@@ -59,7 +59,7 @@ namespace day_23
                 using(StreamReader sr = new StreamReader(filePath))
                 {
                     string headerLine = sr.ReadLine();
-                    for(int i = 0; !sr.EndOfStream; i++)
+                    while(!sr.EndOfStream)
                     {
                         if (sr.ReadLine() is string line)
                         {
