@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition Width="677*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
+            <Image x:Name="imageBox"/>
+            <Button x:Name="button" Height="30" Content="Open File" Click="button_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
