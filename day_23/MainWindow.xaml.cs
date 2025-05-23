@@ -18,6 +18,7 @@ using System.Windows.Shapes;
  * - 파일 경로는 URI를 사용하여 가져오기
  * - 버튼의 크기도 이미지 크기와 같게 변경되도록 하기
  */
+
 namespace day_23
 {
     /// <summary>
@@ -42,7 +43,6 @@ namespace day_23
                 RestoreDirectory = true
             };
 
-
             // Show open file dialog box
             bool? result = dialog.ShowDialog();
 
@@ -57,15 +57,10 @@ namespace day_23
                     var fileUri = new Uri(filePath, UriKind.Absolute);
                     var bitmapImg = new BitmapImage(fileUri);
 
-                    imageBox.Source = bitmapImg;
-
-                    imageBox.Height = bitmapImg.Height;
-                    imageBox.Width = bitmapImg.Width;
+                    button.Background = new ImageBrush(bitmapImg);
 
                     button.Height = bitmapImg.Height;
                     button.Width = bitmapImg.Width;
-
-                    
                 }
             }
         }
