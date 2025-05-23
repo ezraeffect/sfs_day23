@@ -54,27 +54,33 @@ namespace day_23
 
         private void getDataButton_Click(object sender, RoutedEventArgs e)
         {
-            if (filePathLabel.Content is string filePath && File.Exists(filePath))
+            try
             {
-                using(StreamReader sr = new StreamReader(filePath))
+                if (filePathLabel.Content is string filePath && File.Exists(filePath))
                 {
-                    string headerLine = sr.ReadLine();
-                    while(!sr.EndOfStream)
+                    using (StreamReader sr = new StreamReader(filePath))
                     {
-                        if (sr.ReadLine() is string line)
+                        string headerLine = sr.ReadLine();
+                        while (!sr.EndOfStream)
                         {
-                            string[] data = line.Split(',');
-                            students.Add(new Student() { Name = data[0], Age = int.Parse(data[1]), Description = data[2] });
+                            if (sr.ReadLine() is string line)
+                            {
+                                string[] data = line.Split(',');
+                                students.Add(new Student() { Name = data[0], Age = int.Parse(data[1]), Description = data[2] });
+                            }
                         }
                     }
+                    csvDataGrid.ItemsSource = students;
                 }
-                csvDataGrid.ItemsSource = students;
+                else
+                {
+                    MessageBox.Show("경로가 잘못되었거나 파일이 존재하지 않습니다", "오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("경로가 잘못되었거나 파일이 존재하지 않습니다", "오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message,"Exception", MessageBoxButton.OK,MessageBoxImage.Error);
             }
-            
         }
     }
 
